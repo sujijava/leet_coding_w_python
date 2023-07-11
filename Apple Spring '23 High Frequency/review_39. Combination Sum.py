@@ -1,7 +1,11 @@
+from typing import List
+import collections
+
 class Solution:
     def combinationSum(self, candidates: List[int], target: int) -> List[List[int]]:
         res = []
         self.dfs(candidates, target, [], res)
+        return res
 
     def dfs(self, candidates, target, path, res):
         if target == 0:
@@ -14,6 +18,12 @@ class Solution:
                      target - candidates[i],
                      path+[candidates[i]],
                      res)
+
+
+s = Solution()
+print(s.combinationSum([2, 3, 6, 7], 7))
+
+
 
 
 '''
