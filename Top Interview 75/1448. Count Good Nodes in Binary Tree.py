@@ -24,3 +24,23 @@ class Solution:
         right = self.goodNodeCounter(node.right, max)
 
         return count + left + right
+
+
+#        3
+#      /   \
+#     1     4
+#    /     / \
+#   3     1   5
+
+
+# goodNodeCounter(3, 3)  # count = 4 (This is the total good nodes count)
+# │
+# ├── goodNodeCounter(1, 3)  # count = 1
+# │   │
+# │   └── goodNodeCounter(3, 3)  # count = 1 (3 >= 3)
+# │
+# └── goodNodeCounter(4, 3)  # count = 3
+#     │
+#     ├── goodNodeCounter(1, 4)  # count = 0 (1 < 4, so not counted)
+#     │
+#     └── goodNodeCounter(5, 4)  # count = 1 (5 >= 4)
