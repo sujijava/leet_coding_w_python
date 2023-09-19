@@ -5,23 +5,30 @@
 #         self.left = left
 #         self.right = right
 
+# Bottom up
 class Solution:
     def searchBST(self, root: Optional[TreeNode], val: int) -> Optional[TreeNode]:
-        return self.helper(root, val)
 
-    def helper(self, root, val):
-        if root == None:
-            return None
-        if root.val == val:
-            return root
-        # Recursively call helper on the left and right subtrees
-        left_result = self.helper(root.left, val)
-        right_result = self.helper(root.right, val)
-
-        # Check if the value was found in either subtree
-        if left_result:
-            return left_result
-        if right_result:
-            return right_result
+        current_node = root
+        while current_node is not None:
+            if current_node.val == val:
+                return current_node
+            elif val < current_node.val:
+                current_node = current_node.left
+            elif val >= current_node.val:
+                current_node = current_node.right
 
         return None
+
+# Top down recursive approach
+# class Solution:
+#     def searchBST(self, root: Optional[TreeNode], val: int) -> Optional[TreeNode]:
+#         if root is None:
+#             return None
+
+#         if val == root.val:
+#             return root
+#         elif val < root.val:
+#             return self.searchBST(root.left, val)
+#         else:
+#             return self.searchBST(root.right, val)
