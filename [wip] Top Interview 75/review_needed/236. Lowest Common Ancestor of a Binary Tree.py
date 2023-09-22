@@ -5,24 +5,18 @@
 #         self.left = None
 #         self.right = None
 
-#          3
-#       /   \
-#      5     1
-#     / \   / \
-#    6  2  0  8
-#      / \
-#     7   4
-# Input: root = [3,5,1,6,2,0,8,null,null,7,4], p = 5, q = 4
-# Output: 5
+#     3
+#    / \
+#   5   1
+#  / \ / \
+# 6  2 0  8
+#     / \
+#    7   4
 
-# Input: root = [3,5,1,6,2,0,8,null,null,7,4], p = 5, q = 1
-# Output: 3
+class Solution:
+    def lowestCommonAncestor(self, root, p, q):
 
-# Input: root = [3,5,1,6,2,0,8,null,null,7,4], p = 6, q = 4
-# Output: 5
-
-def lowestCommonAncestor(self, root, p, q):
-       if root == p or root == q:
+        if root == p or root == q:
             return root
 
         left = None
