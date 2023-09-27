@@ -12,6 +12,7 @@
 #   3     1   5
 # Input: root = [3,1,4,3,null,1,5]
 # Output: 4
+# https://www.notion.so/DS-everyday-writing-6bfc81c81c5e4074871b4655f30ca661?pvs=4#7066ffcfaded4185a6bd7a4f5a74934d
 
 class Solution:
     def goodNodes(self, root: TreeNode) -> int:
