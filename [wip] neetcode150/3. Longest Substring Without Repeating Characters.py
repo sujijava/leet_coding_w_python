@@ -1,3 +1,7 @@
+# Summary
+# remember case "dvdf"
+# remove char one by one.
+
 class Solution:
     def lengthOfLongestSubstring(self, s: str) -> int:
         char_arr = []
