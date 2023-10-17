@@ -1,5 +1,5 @@
 class Solution:
-    def canFinish(self, numCourses: int, prerequisites: List[List[int]]) -> List[int]:
+    def findOrder(self, numCourses: int, prerequisites: List[List[int]]) -> List[int]:
         preMap = {c: [] for c in range(numCourses)}
         for c, p in prerequisites:
             preMap[c].append(p)
@@ -24,5 +24,5 @@ class Solution:
 
         for c in range(numCourses):
             if dfs(c) == False:
-                return False
-        return True
+                return []
+        return output
