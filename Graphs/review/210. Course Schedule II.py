@@ -1,3 +1,7 @@
+# Input: numCourses = 4, prerequisites = [[1,0],[2,0],[3,1],[3,2]]
+from typing import List
+
+
 class Solution:
     def findOrder(self, numCourses: int, prerequisites: List[List[int]]) -> List[int]:
         preMap = {c: [] for c in range(numCourses)}

@@ -1,8 +1,7 @@
-# points = [[3,12],[-2,5],[-4,1]]
 import heapq
 from typing import List
 
-
+# points = [[3,12],[-2,5],[-4,1]]
 class Solution:
     def minCostConnectPoints(self, points: List[List[int]]) -> int:
         N = len(points)
@@ -40,15 +39,15 @@ s = Solution()
 s.minCostConnectPoints(points)
 
 '''Summary
-Logic Summary 
+Logic Summary
     1. The code starts with an arbitrary point. i.e. first point - [0,0]
     2. It iteratively selects the closest unvisited point and adds its distance to the result.
-    3. This process continues until all points are visited, 
-        and the code returns the minimum cost. 
-        
+    3. This process continues until all points are visited,
+        and the code returns the minimum cost.
+
 Prim's
 - Prim's algorithm is a greedy approach for finding a minimum spanning tree in a weighted graph.
 - It starts from an arbitrary node and iteratively adds the closest unvisited node.
-- The process continues until all nodes are included, 
+- The process continues until all nodes are included,
     resulting in a tree with the minimum total edge weight.
 '''

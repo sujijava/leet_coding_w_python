@@ -1,3 +1,7 @@
+from typing import List
+
+
+# numCourses = 2, prerequisites = [[1,0],[0,1]]
 class Solution:
     def canFinish(self, numCourses: int, prerequisites: List[List[int]]) -> List[int]:
         preMap = {c: [] for c in range(numCourses)}
