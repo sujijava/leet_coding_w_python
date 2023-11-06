@@ -9,9 +9,12 @@ class Solution:
 
         for i in range(len(nums)):
             prefixSum = prefixSum + nums[i]
+
+            # find a prefixSum in dictionary 
             if prefixSum - k in d:
                 ans = ans + d[prefixSum-k]
-
+            
+            # add a prefixSum to dictionary 
             if prefixSum in d:
                 d[prefixSum] = d[prefixSum] + 1
             else:
