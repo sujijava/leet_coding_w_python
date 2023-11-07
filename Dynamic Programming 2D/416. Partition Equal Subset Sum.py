@@ -5,21 +5,20 @@ class Solution:
     def canPartition(self, nums: List[int]) -> bool:
         if sum (nums) % 2:
             return False
-        dp = set()
-        dp.add(0)
+        prevLevelDP = set()
+        prevLevelDP.add(0)
         target = sum (nums) // 2
         for i in range (len (nums)- 1, -1, -1):
-            nextDP = set()
-            for t in dp:
+            currLevelDP = set()
+            for t in prevLevelDP:
                 if (t + nums[i]) == target:
                     return True
                 # every number has two choices:
                 # include itself or not
-                nextDP.add(t+nums[i])
-                nextDP.add(t)
-            
-            dp = nextDP
-        return True if target in dp else False
-    
+                currLevelDP.add(t+nums[i])
+                currLevelDP.add(t)
+
+            prevLevelDP = currLevelDP
+
 s = Solution()
 s.canPartition([1,5,11,5])
