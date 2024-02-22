@@ -1,26 +1,22 @@
 class Solution:
     def longestCommonSubsequence(self, text1: str, text2: str) -> int:
-        dp = [[0 for j in range(len(text2) + 1)]
-              for i in range(len(text1) + 1)]
+        ROW = len(text1) 
+        COL = len(text2)
 
-        print(dp)
-        for i in range(len(text1) - 1, -1, -1):
-            # print("i is {i}", i)
+        dp = [[0] * (COL + 1) for _ in range(ROW + 1)]
 
-            for j in range(len(text2) - 1, -1, -1):
-                # print(j)
-                if text1[i] == text2[j]:
-                    dp[i][j] = 1 + dp[i + 1][j + 1]
-                    print(dp)
+        for r in range(ROW -1, -1, -1):
+            for c in range(COL -1, -1, -1):
+                if text1[r] == text2[c]:
+                    dp[r][c] = 1 + dp[r+1][c+1]
                 else:
-                    dp[i][j] = max(dp[i][j + 1], dp[i + 1][j])
+                    dp[r][c] = max(dp[r][c+1], dp[r+1][c])
 
         return dp[0][0]
 
-
 # Input: text1 = "abcde", text2 = "ace"
 s = Solution()
-s.longestCommonSubsequence("abc", "abc")
+s.longestCommonSubsequence("abcde", "ace")
 
 ''''
    [ a  c  e
