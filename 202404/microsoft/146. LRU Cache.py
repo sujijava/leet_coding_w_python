@@ -18,3 +18,9 @@ class LRUCache(dict):
             else: 
                 self.pop(next(iter(self))) # cache is full, remove least recently used key which is the first key 
         self[key] = value
+
+'''
+summary 
+pop and insert again for get method.
+to sort dictionary by used_at date
+'''
