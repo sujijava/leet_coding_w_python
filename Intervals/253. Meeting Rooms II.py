@@ -1,15 +1,27 @@
-# The maximum number of overlapping meetings 
-# is equivalent to 
-# the minimum number of required conference rooms.
+class Solution:
+    def minMeetingRooms(self, intervals: List[List[int]]) -> int:
+        
+        if not intervals:
+            return 0
+        
+        start_timings = sorted([i[0] for i in intervals])
+        end_timings = sorted(i[1] for i in intervals)
+        L = len(intervals)
 
-def minMeetingRooms(self, intervals) -> int:
-        meetings = []
-        for start, end in intervals:
-            meetings.append((start, 1))
-            meetings.append((end, -1))
-        meetings.sort()
-        max_overlap, overlap = 0, 0
-        for _ , offset in meetings:
-            overlap += offset
-            max_overlap = max(max_overlap, overlap)
-        return max_overlap
+        used_rooms = 0
+        end_pointer = 0
+        start_pointer = 0
+
+        # start_timings = [0,5,15]
+        # end_timings = [10,20,30]
+
+        while start_pointer < L:
+            # not overlap
+            if start_timings[start_pointer] >= end_timings[end_pointer]:
+                used_rooms -= 1
+                end_pointer += 1
+            # overlap
+            used_rooms += 1    
+            start_pointer += 1   
+
+        return used_rooms
