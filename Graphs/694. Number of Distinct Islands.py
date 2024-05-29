@@ -1,31 +1,36 @@
-class Solution:
+class Solution(object):
     def numDistinctIslands(self, grid):
         """
         :type grid: List[List[int]]
         :rtype: int
         """
-        self.steps = ''
-        distinctIslands = set()
-        for i in range(len(grid)):
-            for j in range(len(grid[0])):
-                if grid[i][j] == 1:
-                    # 'o' for origin
-                    self.helper(grid, i, j, 'o')
-                    distinctIslands.add(self.steps)
-                    self.steps = ''
-        print(distinctIslands)
-        return len(distinctIslands)
-    
-    def helper(self, grid, i, j, direct):
-        if 0 <= i < len(grid) and 0 <= j < len(grid[0]) and grid[i][j] == 1:
-            self.steps += direct
-            grid[i][j] = 8 # mark as visited
-            self.helper(grid, i+1, j, 'd')  # down
-            self.helper(grid, i-1, j, 'u')  # upper
-            self.helper(grid, i, j+1, 'r')  # right
-            self.helper(grid, i, j-1, 'l')  # left
-            self.steps += 'b'  # back
-s = Solution()
-# grid = [[1,1,0,0,0],[1,1,0,0,0],[0,0,0,1,1],[0,0,0,1,1]]
-grid = [[1,1,0,1,1],[1,0,0,0,0],[0,0,0,0,1],[1,1,0,1,1]]
-s.numDistinctIslands(grid)
+        self.ROWS = len(grid)
+        self.COLS = len(grid[0])
+        routes = set()
+
+        for r in range(self.ROWS):
+            for c in range(self.COLS):
+                self.path = "" # <<<< ********* IMPTT ************
+                if grid[r][c] == 1:
+                    self.dfs(grid, r, c, 'o')
+                    routes.add(self.path)
+                
+        return len(routes)
+
+    def dfs(self, grid, r, c, direction):
+        if r < 0 or c < 0:
+            return 
+        if r >= self.ROWS or c >= self.COLS:
+            return 
+        if grid[r][c] != 1:
+            return 
+        
+        grid[r][c] = 8 # visited 
+        self.path += direction
+
+        self.dfs(grid, r+1, c, 'u')
+        self.dfs(grid, r-1, c, 'd')
+        self.dfs(grid, r, c+1, 'r')
+        self.dfs(grid, r, c-1, 'l')
+        
+        self.path += 'b' # <<<< ********* IMPTT ************
