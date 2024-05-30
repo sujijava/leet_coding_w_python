@@ -49,3 +49,11 @@ class Solution:
             return minute
         else:
             return -1
+'''
+
+Time Complexity: O(NM)
+
+Space Complexity: O(NM)
+In the worst case, the grid is filled with rotten oranges. 
+The queue would be initialized with all the cells in the grid.
+'''

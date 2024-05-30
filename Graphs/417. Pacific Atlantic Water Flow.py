@@ -4,34 +4,41 @@
 
 class Solution:
     def pacificAtlantic(self, heights: List[List[int]]) -> List[List[int]]:
-        ROWS = len(heights)
-        COLS = len(heights[0])
+        self.ROWS = len(heights)
+        self.COLS = len(heights[0])        
+        self.heights = heights
+        
         pac = set()
         atl = set()
 
-        def dfs(r, c, visit, prevHeight):
-            if (
-                r < 0 or
-                c < 0 or
-                r >= ROWS or
-                c >= COLS or
-                prevHeight > heights[r][c] or
-                (r, c) in visit
-            ):
-                return
+        for r in range(self.ROWS):
+            self.dfs(r, 0, pac, 0)
+            self.dfs(r, self.COLS-1, atl, 0)
 
-            visit.add((r, c))
-            dfs(r, c+1, visit, heights[r][c])
-            dfs(r, c-1, visit, heights[r][c])
-            dfs(r+1, c, visit, heights[r][c])
-            dfs(r-1, c, visit, heights[r][c])
-
-        for r in range(ROWS):
-            dfs(r, 0, pac, 0)
-            dfs(r, COLS-1, atl, 0)
-
-        for c in range(COLS):
-            dfs(0, c, pac, 0)
-            dfs(ROWS-1, c, atl, 0)
+        for c in range(self.COLS):
+            self.dfs(0, c, pac, 0)
+            self.dfs(self.ROWS-1, c, atl, 0)
 
         return pac.intersection(atl)
+    
+    def dfs(self, r, c, visit, prevHeight):
+        if (
+            r < 0 or
+            c < 0 or
+            r >= self.ROWS or
+            c >= self.COLS or
+            prevHeight > self.heights[r][c] or
+            (r, c) in visit
+        ):
+            return
+
+        visit.add((r, c))
+        self.dfs(r, c+1, visit, self.heights[r][c])
+        self.dfs(r, c-1, visit, self.heights[r][c])
+        self.dfs(r+1, c, visit, self.heights[r][c])
+        self.dfs(r-1, c, visit, self.heights[r][c])
+
+'''
+space complexity: O(MN)
+time complexity: O(MN)
+'''
